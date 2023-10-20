@@ -71,6 +71,8 @@ cmake --build buildMake/Clang/ -j8
 cmake --build buildMake/Clang/ -j8 --target run
 ```
 
+### `setCompiler` custum convenience flag
+
 C and C++ compilers can also be selected by a convenience flag (added at the configure step):
 ```
 -D setCompiler=msvc
