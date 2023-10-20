@@ -1,5 +1,10 @@
 # Introduction to Dear ImGui: interactive OpenGL triangle with basic widgets and adjustible fontstyle/fontsize
+SDL2 backend (configured with glad4.1) and Dear ImGui graphics; only C++ is needed to code this ... also modern style CMake with CMakePresets.json. This example is meant to serve as a starting point template for more elaborate C++ projects that could benefit from a nice GUI - without the hassle of incorporating other programing languages!
+![ScreenShot1](ScreenShots/ScreenShot1.png)
+![ScreenShot2](ScreenShots/ScreenShot2.png)
+![ScreenShot3](ScreenShots/ScreenShot3.png)
 
+## CMake way (with CMakePresets.json) to build and run the program
 ```
 git clone --depth 1 https://github.com/MariuszJozef/SDLImGuiTriangle.git
 cd SDLImGuiTriangle
@@ -7,9 +12,9 @@ cd SDLImGuiTriangle
 
 Ninja single-config generator with GNU compiler:
 ```
-cmake --preset Ninja-Msvc-MinSizeRel
-cmake --build --preset Ninja-Msvc-MinSizeRel
-cmake --build --preset Ninja-Msvc-MinSizeRel --target run
+cmake --preset Ninja-Gnu-MinSizeRel
+cmake --build --preset Ninja-Gnu-MinSizeRel
+cmake --build --preset Ninja-Gnu-MinSizeRel --target run
 ```
 
 or Clang compiler:
@@ -31,7 +36,12 @@ cmake --build --preset Ninja-Msvc-MinSizeRel --target run
 - On Windows 11 it is preferable to issue the commands from **"Developer Command Prompt for VS 2022"** instead of regular PowerShell or CMD because the former has predefined Visual Studio environment variables which enable compilation with VS compiler.
 - If nevertheless using PowerShell/CMD, or on Windows 10, one must first run some appropriate *.bat scripts that define VS environment variables.
 
-## Some other possible way to compile and run the program
+```
+cmake --list-presets all
+```
+to see which other presets are available (out of those defined in CMakePresets.json) on a given platform.
+
+## Some other possible way to compile and run the program (CMake without CMakePresets.json)
 
 ```
     cmake -S . -B buildNMake/Msvc -G "NMake Makefiles" -D CMAKE_CXX_COMPILER=cl.exe -D CMAKE_BUILD_TYPE=RelWithDebInfo
@@ -66,7 +76,7 @@ C and C++ compilers can also be selected by a convenience flag (added at the con
     instead of: -D CMAKE_C_COMPILER=clang -D CMAKE_CXX_COMPILER=clang++
 ```
 
-So for example:
+So for example (using multi-config Ninja generator this time):
 ```
     cmake -S . -B buildNinjaMC/Msvc -G "Ninja Multi-Config" -D setCompiler=msvc
     cmake --build buildNinjaMC/Msvc/ --config Debug --target run
