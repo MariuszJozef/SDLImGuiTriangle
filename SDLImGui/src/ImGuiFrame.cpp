@@ -1,4 +1,3 @@
-// #include <sstream>
 #include "ImGuiFrame.hpp"
 #include "OpenGLContext.hpp"
 
